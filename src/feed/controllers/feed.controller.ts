@@ -23,4 +23,6 @@ export class FeedController {
     updatePost(@Param('id') id: number, @Body() feedPost: FeedPost): Observable<UpdateResult> {
         return this.feedService.updatePost(id, feedPost)
     }
+
+    
 }
