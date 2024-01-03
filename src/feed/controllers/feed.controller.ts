@@ -9,12 +9,12 @@ export class FeedController {
         private feedService: FeedService
     ) {  }
     @Post()
-    create(@Body() post: FeedPost): Observable<FeedPost> {
+    createPost(@Body() post: FeedPost): Observable<FeedPost> {
         return this.feedService.createPost(post);
     }
 
     @Get()
-    findAll(): Observable<FeedPost[]> {
-        return this.feedService.findAll();
+    findAllPosts(): Observable<FeedPost[]> {
+        return this.feedService.findAllPost();
     }
 }

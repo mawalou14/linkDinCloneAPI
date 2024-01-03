@@ -16,7 +16,9 @@ export class FeedService {
         return from(this.feedPostRepository.save(feedPost));
     }
 
-    findAll(): Observable<FeedPost[]> {
+    findAllPost(): Observable<FeedPost[]> {
         return from(this.feedPostRepository.find());
     }
+
+    
 }
