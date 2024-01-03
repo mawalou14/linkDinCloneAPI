@@ -11,6 +11,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       type: 'postgres',
       host: process.env.POSTGRES_HOST,
       port: parseInt(<string>process.env.POSTGRES_POST),
+      username: process.env.POSTGRES_USER,
+      password: process.env.POSTGRES_PASSWORD
+
     })
   ],
   controllers: [AppController],
