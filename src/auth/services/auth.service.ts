@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 
 import * as bcrypt from 'bcrypt';
 import { Observable, from } from 'rxjs';
+import { User } from '../modules/user.interface';
 
 @Injectable()
 export class AuthService {
@@ -11,7 +12,7 @@ export class AuthService {
         return from(bcrypt.hash(password, 12));
     }
 
-    registerAccount() {
+    registerAccount(user: User): Observable<User> {
         
     }
 
