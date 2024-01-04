@@ -10,7 +10,7 @@ export class FeedService {
     constructor(
         @InjectRepository(FeedPostEntity)
         private readonly feedPostRepository: Repository<FeedPostEntity>
-    ) {}
+    ) { }
 
     createPost(feedPost: FeedPost): Observable<FeedPost> {
         return from(this.feedPostRepository.save(feedPost));
@@ -21,7 +21,10 @@ export class FeedService {
     }
 
     findPost(take: number = 10, skip: number = 0): Observable<FeedPost[]> {
-        this.feedPostRepository.findAndCount({take, skip})
+        return from(this.feedPostRepository.findAndCount({ take, skip }).then(([posts]) => {
+            return <FeedPost[]>posts
+        })
+        );
     }
 
     updatePost(id: number, feedPost: FeedPost): Observable<UpdateResult> {
