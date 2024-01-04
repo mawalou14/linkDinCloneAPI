@@ -3,10 +3,16 @@ import { Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { Observable, from, switchMap } from 'rxjs';
 import { User } from '../modules/user.interface';
+import { InjectRepository } from '@nestjs/typeorm';
+import { UserEntity } from '../modules/user.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class AuthService {
-    contructor() {}
+    constructor(
+        @InjectRepository(UserEntity) 
+        private readonly userRepository: Repository<UserEntity>
+    ) {}
 
     hashPassword(password: string): Observable<string> {
         return from(bcrypt.hash(password, 12));
@@ -17,7 +23,9 @@ export class AuthService {
 
         return this.hashPassword(password).pipe(
             switchMap((hashPassword: string) => {
-                return from()
+                return from(
+                    this.userRepository.save({})
+                )
             })
         )
     }
