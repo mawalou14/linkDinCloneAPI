@@ -4,7 +4,7 @@ import { FeedPostEntity } from "src/feed/modules/posts.entity";
 
 
 @Entity('user')
-export class User {
+export class UserEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -21,4 +21,5 @@ export class User {
     role: Role;
 
     @OneToMany(() => FeedPostEntity, (feedPostEntity) => feedPostEntity.author)
+    feedPosts: FeedPostEntity[];
 }
