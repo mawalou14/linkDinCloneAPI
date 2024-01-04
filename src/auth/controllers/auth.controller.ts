@@ -1,9 +1,17 @@
-import { Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
+import { User } from '../modules/user.interface';
+import { Observable } from 'rxjs';
+import { AuthService } from '../services/auth.service';
 
 @Controller('auth')
 export class AuthController {
-    @Post('register')
-    register() {
 
+    constructor(private authService: AuthService) { }
+
+    @Post('register')
+    register(@Body() user: User): Observable<User> {
+        {
+            return this.authService.registerAccount(user)
+        }
     }
 }
