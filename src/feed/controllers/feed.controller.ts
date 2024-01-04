@@ -1,8 +1,8 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { FeedService } from '../services/feed.service';
 import { FeedPost } from '../modules/posts.interface';
 import { Observable } from 'rxjs';
-import { UpdateResult } from 'typeorm';
+import { DeleteResult, UpdateResult } from 'typeorm';
 
 @Controller('feed')
 export class FeedController {
@@ -24,5 +24,8 @@ export class FeedController {
         return this.feedService.updatePost(id, feedPost)
     }
 
-    
+    @Delete(':id')
+    deletePost(@Param('id') id: number): Observable<DeleteResult> {
+        return this.feedService.deletePost(id);
+    }
 }
