@@ -40,12 +40,17 @@ export class AuthService {
         )
     }
 
-    validateUser(email: string) {
-
+    validateUser(email: string, password: string): Observable<User> {
+        return from(this.userRepository.findOne({ email }, { select: [
+            'id', 'em'
+        ] }))
     }
 
     loginAccount(user: User): Observable<string> {
         return
     }
+
+
+    01:09:08
 
 }
