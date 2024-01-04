@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
 import { FeedService } from '../services/feed.service';
 import { FeedPost } from '../modules/posts.interface';
 import { Observable } from 'rxjs';
@@ -20,7 +20,7 @@ export class FeedController {
     // }
     
     @Get()
-    findAllPosts(): Observable<FeedPost[]> {
+    findSelected(@Query('take') take: number = 1, @Query('skip') skip: number = 1): Observable<FeedPost[]> {
         return this.feedService.findAllPost();
     }
 
