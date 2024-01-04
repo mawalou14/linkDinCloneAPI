@@ -11,4 +11,8 @@ export class AuthService {
         return from(bcrypt.hash(password, 12));
     }
 
+    registerAccount() {
+        
+    }
+
 }
