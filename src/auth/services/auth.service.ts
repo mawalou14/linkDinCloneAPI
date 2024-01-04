@@ -40,8 +40,11 @@ export class AuthService {
         )
     }
 
+    validateUser(email: string): Observable<> {
+
+    }
     loginAccount() {
-        
+
     }
 
 }
