@@ -21,7 +21,7 @@ export class FeedController {
     
     @Get()
     findSelected(@Query('take') take: number = 1, @Query('skip') skip: number = 1): Observable<FeedPost[]> {
-        return this.feedService.findAllPost();
+        return this.feedService.findPost(take, skip);
     }
 
     @Put(':id')
