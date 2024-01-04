@@ -16,6 +16,6 @@ export class User {
     @Column({ unique: true })
     email: string;
 
-    @Column()
+    @Column({ type: 'enum', enum: Role, default: Role.USER })
     role: Role;
 }
