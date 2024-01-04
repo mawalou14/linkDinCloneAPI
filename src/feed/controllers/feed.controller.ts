@@ -14,6 +14,11 @@ export class FeedController {
         return this.feedService.createPost(post);
     }
 
+    // @Get()
+    // findAllPosts(): Observable<FeedPost[]> {
+    //     return this.feedService.findAllPost();
+    // }
+    
     @Get()
     findAllPosts(): Observable<FeedPost[]> {
         return this.feedService.findAllPost();
