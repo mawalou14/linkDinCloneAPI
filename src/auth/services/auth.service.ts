@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
 import * as bcrypt from 'bcrypt';
-import { Observable, from } from 'rxjs';
+import { Observable, from, switchMap } from 'rxjs';
 import { User } from '../modules/user.interface';
 
 @Injectable()
@@ -13,7 +13,13 @@ export class AuthService {
     }
 
     registerAccount(user: User): Observable<User> {
-        
+        const { firstname, lastName, email, password } = user;
+
+        return this.hashPassword(password).pipe(
+            switchMap((hashPassword: string) => {
+                return from()
+            })
+        )
     }
 
 }
