@@ -24,7 +24,12 @@ export class AuthService {
         return this.hashPassword(password).pipe(
             switchMap((hashPassword: string) => {
                 return from(
-                    this.userRepository.save({})
+                    this.userRepository.save({
+                        firstname,
+                        lastName,
+                        email,
+                        password: hashPassword
+                    })
                 )
             })
         )
