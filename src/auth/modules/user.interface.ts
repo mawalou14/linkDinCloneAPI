@@ -3,7 +3,7 @@ import { Role } from "./role.enum";
 
 export interface User {
     id?: number;
-    firstname?: string;
+    firstName?: string;
     lastName?: string;
     email?: string;
     password?: string;
