@@ -1,6 +1,6 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { User } from '../modules/user.interface';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
 @Controller('auth')
@@ -17,6 +17,8 @@ export class AuthController {
 
     @Post('login') 
     login(@Body() user: User): Observable<{ token: string }> {
-        return this.authService.loginAccount(user);
+        return this.authService.loginAccount(user).pipe(
+            map((jwt: string) => ({ token: jwt }))
+        );
     }
 }
