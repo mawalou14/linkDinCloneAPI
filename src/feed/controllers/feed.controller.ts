@@ -6,6 +6,7 @@ import { DeleteResult, UpdateResult } from 'typeorm';
 import { JwtGuard } from 'src/auth/guards/jwt.guard';
 import { Roles } from 'src/auth/decorators/roles.decorator';
 import { Role } from 'src/auth/modules/role.enum';
+import { RolesGuard } from 'src/auth/guards/roles.guard';
 
 @Controller('feed')
 export class FeedController {
@@ -14,7 +15,7 @@ export class FeedController {
     ) { }
 
     @Roles(Role.ADMIN)
-    @UseGuards( JwtGuard )
+    @UseGuards( JwtGuard, RolesGuard )
     @Post()
     createPost(@Body() post: FeedPost, @Request() req): Observable<FeedPost> {
         return this.feedService.createPost(req.user, post);
