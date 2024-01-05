@@ -48,7 +48,7 @@ export class AuthService {
                 where: {
                     email: email,
                     password: password
-                }, 
+                },
                 select: [
                     'id',
                     'firstName',
@@ -59,28 +59,29 @@ export class AuthService {
                 ]
             })
         ).pipe(
-            switchMap((user: User) => 
-            from(bcrypt.compare(password, user.password)).pipe(
-                map((isValidPassword: boolean) => {
-                    if(isValidPassword) {
-                        delete user.password;
-                        return user;
-                    }
-                })
-            ))
+            switchMap((user: User) =>
+                from(bcrypt.compare(password, user.password)).pipe(
+                    map((isValidPassword: boolean) => {
+                        if (isValidPassword) {
+                            delete user.password;
+                            return user;
+                        }
+                    })
+                ))
         )
     }
-    
+
 
     loginAccount(user: User): Observable<string> {
         const { email, password } = user
         return this.validateUser(email, password).pipe(
             switchMap((user: User) => {
-                if(user) {
+                if (user) {
                     //  create a JWT - credential
-                    return from()
+                    return from(this.jwtService.signAsync({ user }))
                 }
             })
+        )
     }
 
 }
