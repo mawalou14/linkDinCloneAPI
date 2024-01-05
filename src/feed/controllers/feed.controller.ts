@@ -4,6 +4,8 @@ import { FeedPost } from '../modules/posts.interface';
 import { Observable } from 'rxjs';
 import { DeleteResult, UpdateResult } from 'typeorm';
 import { JwtGuard } from 'src/auth/guards/jwt.guard';
+import { Roles } from 'src/auth/decorators/roles.decorator';
+import { Role } from 'src/auth/modules/role.enum';
 
 @Controller('feed')
 export class FeedController {
@@ -11,6 +13,7 @@ export class FeedController {
         private feedService: FeedService
     ) { }
 
+    @Roles(Role.ADMIN)
     @UseGuards( JwtGuard )
     @Post()
     createPost(@Body() post: FeedPost, @Request() req): Observable<FeedPost> {
