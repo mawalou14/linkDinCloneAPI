@@ -41,10 +41,24 @@ export class AuthService {
     }
 
     validateUser(email: string, password: string): Observable<User> {
-        return from(this.userRepository.findOne({ email }, { select: [
-            'id', 'em'
-        ] }))
+        return from(
+            this.userRepository.findOne({
+                where: {
+                    email: email,
+                    password: password
+                }, 
+                select: [
+                    'id',
+                    'firstName',
+                    'lastName',
+                    'email',
+                    'password',
+                    'role',
+                ]
+            })
+        );
     }
+    
 
     loginAccount(user: User): Observable<string> {
         return
