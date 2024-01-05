@@ -71,7 +71,13 @@ export class AuthService {
     
 
     loginAccount(user: User): Observable<string> {
-        return
+        const { email, password } = user
+        return this.validateUser(email, password).pipe(
+            switchMap((user: User) => {
+                if(user) {
+                    //  create a JWT - credential
+                }
+            })
     }
 
 }
