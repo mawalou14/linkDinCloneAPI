@@ -6,12 +6,14 @@ import { User } from '../modules/user.interface';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from '../modules/user.entity';
 import { Repository } from 'typeorm';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
     constructor(
         @InjectRepository(UserEntity)
-        private readonly userRepository: Repository<UserEntity>
+        private readonly userRepository: Repository<UserEntity>,
+        private jwtService: JwtService
     ) { }
 
     hashPassword(password: string): Observable<string> {
@@ -76,6 +78,7 @@ export class AuthService {
             switchMap((user: User) => {
                 if(user) {
                     //  create a JWT - credential
+                    return from()
                 }
             })
     }
