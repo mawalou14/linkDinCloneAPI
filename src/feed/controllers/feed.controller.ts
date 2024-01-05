@@ -14,8 +14,8 @@ export class FeedController {
         private feedService: FeedService
     ) { }
 
-    @Roles(Role.ADMIN)
-    @UseGuards( JwtGuard, RolesGuard )
+    @Roles(Role.ADMIN, Role.PREMIUM)
+    @UseGuards(JwtGuard, RolesGuard)
     @Post()
     createPost(@Body() post: FeedPost, @Request() req): Observable<FeedPost> {
         return this.feedService.createPost(req.user, post);
@@ -25,7 +25,7 @@ export class FeedController {
     // findAllPosts(): Observable<FeedPost[]> {
     //     return this.feedService.findAllPost();
     // }
-    
+
     @Get()
     findSelected(@Query('take') take: number = 1, @Query('skip') skip: number = 1): Observable<FeedPost[]> {
         take = take > 20 ? 20 : take;
