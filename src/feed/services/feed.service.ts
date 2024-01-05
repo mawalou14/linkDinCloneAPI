@@ -4,6 +4,7 @@ import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FeedPost } from '../modules/posts.interface';
 import { Observable, from } from 'rxjs';
+import { User } from 'src/auth/modules/user.interface';
 
 @Injectable()
 export class FeedService {
@@ -12,7 +13,7 @@ export class FeedService {
         private readonly feedPostRepository: Repository<FeedPostEntity>
     ) { }
 
-    createPost(feedPost: FeedPost): Observable<FeedPost> {
+    createPost(user: User, feedPost: FeedPost): Observable<FeedPost> {
         return from(this.feedPostRepository.save(feedPost));
     }
 
