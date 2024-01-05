@@ -14,6 +14,7 @@ export class FeedService {
     ) { }
 
     createPost(user: User, feedPost: FeedPost): Observable<FeedPost> {
+        feedPost.author = user;
         return from(this.feedPostRepository.save(feedPost));
     }
 
