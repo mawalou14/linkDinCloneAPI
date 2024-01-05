@@ -46,8 +46,7 @@ export class AuthService {
         return from(
             this.userRepository.findOne({
                 where: {
-                    email: email,
-                    password: password
+                    email: email
                 },
                 select: [
                     'id',

@@ -15,11 +15,10 @@ export class AuthController {
         }
     }
 
-    @Post('login') 
+    @Post('login')
     login(@Body() user: User): Observable<{ token: string }> {
-        return this.authService.loginAccount(user)
-        // .pipe(
-        //     map((jwt: string) => ({ token: jwt }))
-        // );
+        return this.authService.loginAccount(user).pipe(
+            map((jwt: string) => ({ token: jwt }))
+        );
     }
 }
