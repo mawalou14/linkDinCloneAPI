@@ -16,6 +16,6 @@ export class IsCreatorGuard implements CanActivate {
   ): boolean | Promise<boolean> | Observable<boolean> {
 
     const request = context.switchToHttp().getRequest();
-    const { user, params }: { user: User, params: { id: number } }
+    const { user, params }: { user: User; params: { id: number } } = request;
   }
 }
