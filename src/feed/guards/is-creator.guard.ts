@@ -20,6 +20,7 @@ export class IsCreatorGuard implements CanActivate {
 
     if(!user || !params) return false;
 
+    // Allow admins to get privileges
     if(user.role === 'admin') return true; 
   }
 }
