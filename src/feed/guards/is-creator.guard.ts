@@ -22,5 +22,8 @@ export class IsCreatorGuard implements CanActivate {
 
     // Allow admins to get privileges
     if(user.role === 'admin') return true; 
+
+    const userId = user.id;
+    const feedId = params.id;
   }
 }
