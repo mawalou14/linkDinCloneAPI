@@ -25,5 +25,7 @@ export class IsCreatorGuard implements CanActivate {
 
     const userId = user.id;
     const feedId = params.id;
+
+    // Determin if the userId  = the feedId
   }
 }
