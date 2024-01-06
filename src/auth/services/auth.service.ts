@@ -93,6 +93,11 @@ export class AuthService {
                     'feedPosts'
                 ]
             })
+        ).pipe(
+            map((user: User) => {
+                delete user.password;
+                return user;
+            })
         )
     }
 
