@@ -15,7 +15,7 @@ export class FeedController {
         private feedService: FeedService
     ) { }
 
-    @Roles(Role.ADMIN, Role.PREMIUM)
+    @Roles(Role.ADMIN, Role.PREMIUM, Role.USER)
     @UseGuards(JwtGuard, RolesGuard)
     @Post()
     createPost(@Body() post: FeedPost, @Request() req): Observable<FeedPost> {
@@ -39,6 +39,7 @@ export class FeedController {
         return this.feedService.updatePost(id, feedPost)
     }
 
+    @UseGuards(JwtGuard, IsCreatorGuard)
     @Delete(':id')
     deletePost(@Param('id') id: number): Observable<DeleteResult> {
         return this.feedService.deletePost(id);
