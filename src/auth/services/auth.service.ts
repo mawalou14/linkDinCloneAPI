@@ -83,4 +83,17 @@ export class AuthService {
         )
     }
 
+    findUserById(id: number): Observable<User> {
+        return from(
+            this.userRepository.findOne({
+                where: {
+                    id: id,
+                },
+                relations: [
+                    'feedPosts'
+                ]
+            })
+        )
+    }
+
 }
