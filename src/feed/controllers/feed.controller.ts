@@ -7,6 +7,7 @@ import { JwtGuard } from 'src/auth/guards/jwt.guard';
 import { Roles } from 'src/auth/decorators/roles.decorator';
 import { Role } from 'src/auth/modules/role.enum';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
+import { IsCreatorGuard } from '../guards/is-creator.guard';
 
 @Controller('feed')
 export class FeedController {
@@ -32,6 +33,7 @@ export class FeedController {
         return this.feedService.findPost(take, skip);
     }
 
+    @UseGuards(JwtGuard, IsCreatorGuard)
     @Put(':id')
     updatePost(@Param('id') id: number, @Body() feedPost: FeedPost): Observable<UpdateResult> {
         return this.feedService.updatePost(id, feedPost)
