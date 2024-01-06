@@ -45,3 +45,5 @@ export class FeedController {
         return this.feedService.deletePost(id);
     }
 }
+
+pause will continue with file upload video
