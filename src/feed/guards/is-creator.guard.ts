@@ -27,6 +27,8 @@ export class IsCreatorGuard implements CanActivate {
     const feedId = params.id;
 
     // Determin if the userId  = the feedId
-    
+    return this.authService.findUserById(userId).pipe(
+      
+    )
   }
 }
