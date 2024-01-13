@@ -46,4 +46,4 @@ export class FeedController {
     }
 }
 
-pause will continue with file upload video
+// pause will continue with file upload video
